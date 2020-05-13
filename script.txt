@@ -1,0 +1,18 @@
+#!/bin/sh
+
+PCName=$(hostname)
+UserName=$(whoami)
+OS=$(uname)
+Modules=$(lsmod)
+echo "**********************************************************"
+echo "PC Name:$PCName"
+echo "UserName:$UserName"
+echo "OS Type:$OS"
+echo "Core Modules:\n$Modules"
+echo "**********************************************************"
+for i in $(who -u | grep -v 'test' | awk '{print $1}')
+do
+echo "Enter your message for $i:"
+write $i
+echo "\nMessage has been delivered to $i.\n"
+done
