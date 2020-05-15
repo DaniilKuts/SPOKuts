@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ls -l /home/daniil/lab8/gchmod_test/ | awk '{print $1 " " $9}'
+echo "Enter permission rights for needed files"
+read Rights1
+echo "Enter new permission rights"
+read Rights2
+find /home/daniil/lab8/gchmod_test/ -type f -perm $Rights1>changelog
+while read LINE
+do chmod $Rights2 $LINE
+done < changelog
+echo "Changes applied."
+ls -l /home/daniil/lab8/gchmod_test/ | awk '{print $1 " " $9}'
